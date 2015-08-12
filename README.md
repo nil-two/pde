@@ -8,6 +8,12 @@ Execute processing program quickly.
 pde sketch.pde
 ```
 
+Requirements
+-----------
+
+- bash
+- processing-java
+
 Usage
 -----
 
