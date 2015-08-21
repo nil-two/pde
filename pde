@@ -51,7 +51,7 @@ function version() {
   echo "$VERSION"
 }
 function execute_processing() {
-  readonly workdir=$(mktemp --directory "/tmp/${NAME}.tmp.XXXXXX")
+  local workdir=$(mktemp --directory "/tmp/${NAME}.tmp.XXXXXX")
   trap "rm -rf '$workdir'" EXIT
 
   mkdir "$workdir/sketch"
