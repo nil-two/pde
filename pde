@@ -58,10 +58,10 @@ function execute_processing() {
   mkdir "$workdir/output"
   cp "$SRC" "$workdir/sketch/sketch.pde"
   processing-java \
-    --run \
-    --force \
     --sketch="$workdir/sketch" \
-    --output="$workdir/output"
+    --output="$workdir/output" \
+    --force \
+    --run
 }
 
 main $*
