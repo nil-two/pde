@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -eu
-readonly NAME="$(basename $0)"
+readonly NAME="${0##*/}"
 readonly VERSION='v0.1.0'
 
 main() {
