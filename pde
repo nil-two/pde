@@ -32,12 +32,11 @@ parse_flags() {
     echo "$NAME: no input files"
     exit 2
   fi
-
-  SRC="$1"
-  if [ ! -f "$SRC" ]; then
-    echo "$NAME: $SRC: No such file"
+  if [ ! -f "$1" ]; then
+    echo "$NAME: $1: No such file"
     exit 2
   fi
+  SRC="$1"
 }
 
 usage() {
