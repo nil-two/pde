@@ -7,6 +7,7 @@ main() {
   parse_flags $*
   execute_processing
 }
+
 parse_flags() {
   for opt in "$@"; do
     case "$opt" in
@@ -38,6 +39,7 @@ parse_flags() {
     exit 2
   fi
 }
+
 usage() {
   cat <<EOF
 Usage: $NAME [OPTION]... SRC
@@ -48,9 +50,11 @@ Options:
   -v, --version   display version information and exit
 EOF
 }
+
 version() {
   echo "$VERSION"
 }
+
 execute_processing() {
   WORKDIR=$(mktemp --directory "/tmp/${NAME}.tmp.XXXXXX")
   trap "rm -rf '$WORKDIR'" EXIT
