@@ -24,7 +24,6 @@ chmod 755 ~/bin/pde
 Requirements
 -----------
 
-- bash
 - processing-java
 
 Usage
