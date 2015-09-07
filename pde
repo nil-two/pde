@@ -8,8 +8,8 @@ main() {
   execute_processing
 }
 parse_flags() {
-  for arg in "$@"; do
-    case "$arg" in
+  for opt in "$@"; do
+    case "$opt" in
       -h|--help)
         usage
         exit 0
@@ -19,7 +19,7 @@ parse_flags() {
         exit 0
         ;;
       -*)
-        echo "$NAME: unrecognized option '$1'"
+        echo "$NAME: unrecognized option '$opt'"
         exit 2
         ;;
       *)
@@ -31,11 +31,12 @@ parse_flags() {
     echo "$NAME: no input files"
     exit 2
   fi
-  if [ ! -f "$1" ]; then
-    echo "$NAME: $1: No such file"
+
+  SRC="$1"
+  if [ ! -f "$SRC" ]; then
+    echo "$NAME: $SRC: No such file"
     exit 2
   fi
-  SRC="$1"
 }
 usage() {
   cat <<EOF
@@ -51,15 +52,15 @@ version() {
   echo "$VERSION"
 }
 execute_processing() {
-  local workdir=$(mktemp --directory "/tmp/${NAME}.tmp.XXXXXX")
-  trap "rm -rf '$workdir'" EXIT
+  WORKDIR=$(mktemp --directory "/tmp/${NAME}.tmp.XXXXXX")
+  trap "rm -rf '$WORKDIR'" EXIT
 
-  mkdir "$workdir/sketch"
-  mkdir "$workdir/output"
-  cp "$SRC" "$workdir/sketch/sketch.pde"
+  mkdir "$WORKDIR/sketch"
+  mkdir "$WORKDIR/output"
+  cp "$SRC" "$WORKDIR/sketch/sketch.pde"
   processing-java \
-    --sketch="$workdir/sketch" \
-    --output="$workdir/output" \
+    --sketch="$WORKDIR/sketch" \
+    --output="$WORKDIR/output" \
     --force \
     --run
 }
