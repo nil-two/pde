@@ -3,11 +3,11 @@ set -eu
 readonly NAME="$(basename $0)"
 readonly VERSION='v0.1.0'
 
-function main() {
+main() {
   parse_flags $*
   execute_processing
 }
-function parse_flags() {
+parse_flags() {
   for arg in "$@"; do
     case "$arg" in
       -h|--help)
@@ -37,7 +37,7 @@ function parse_flags() {
   fi
   SRC="$1"
 }
-function usage() {
+usage() {
   cat <<EOF
 Usage: $NAME [OPTION]... SRC
 Execute processing program quickly.
@@ -47,10 +47,10 @@ Options:
   -v, --version   display version information and exit
 EOF
 }
-function version() {
+version() {
   echo "$VERSION"
 }
-function execute_processing() {
+execute_processing() {
   local workdir=$(mktemp --directory "/tmp/${NAME}.tmp.XXXXXX")
   trap "rm -rf '$workdir'" EXIT
 
