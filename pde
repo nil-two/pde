@@ -4,7 +4,7 @@ readonly NAME="${0##*/}"
 readonly VERSION='v0.1.0'
 
 main() {
-  parse_flags $*
+  parse_flags "$@"
   execute_processing
 }
 
@@ -68,5 +68,5 @@ execute_processing() {
     --run
 }
 
-main $*
+main "$@"
 exit 0
