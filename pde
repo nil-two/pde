@@ -56,7 +56,7 @@ version() {
 
 execute_processing() {
   WORKDIR=$(mktemp -d "/tmp/${NAME}.tmp.XXXXXX")
-  trap "rm -rf '$WORKDIR'" EXIT
+  trap 'rm -rf '$WORKDIR EXIT
 
   mkdir "$WORKDIR/sketch"
   mkdir "$WORKDIR/output"
