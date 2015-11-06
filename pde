@@ -20,7 +20,7 @@ parse_flags() {
         exit 0
         ;;
       -*)
-        echo "$NAME: unrecognized option '$opt'"
+        echo "$NAME: unrecognized option '$opt'" >&2
         exit 2
         ;;
       *)
@@ -29,18 +29,18 @@ parse_flags() {
     esac
   done
   if [ "$#" -lt 1 ]; then
-    echo "$NAME: no input files"
+    echo "$NAME: no input files" >&2
     exit 2
   fi
   if [ ! -f "$1" ]; then
-    echo "$NAME: $1: No such file"
+    echo "$NAME: $1: No such file" >&2
     exit 2
   fi
   SRC="$1"
 }
 
 usage() {
-  cat <<EOF
+  cat <<EOF >&2
 Usage: $NAME [OPTION]... SRC
 Execute processing program quickly.
 
@@ -51,7 +51,7 @@ EOF
 }
 
 version() {
-  echo "$VERSION"
+  echo "$VERSION" >&2
 }
 
 execute_processing() {
