@@ -1,6 +1,5 @@
 #! /bin/sh
 set -eu
-readonly name="${0##*/}"
 readonly version='0.1.0'
 
 main() {
@@ -20,7 +19,7 @@ parse_flags() {
         exit 0
         ;;
       -*)
-        echo "$name: unrecognized option '$opt'" >&2
+        echo "${0##*/}: unrecognized option '$opt'" >&2
         exit 2
         ;;
       *)
@@ -29,11 +28,11 @@ parse_flags() {
     esac
   done
   if [ "$#" -lt 1 ]; then
-    echo "$name: no input files" >&2
+    echo "${0##*/}: no input files" >&2
     exit 2
   fi
   if [ ! -f "$1" ]; then
-    echo "$name: $1: No such file" >&2
+    echo "${0##*/}: $1: No such file" >&2
     exit 2
   fi
   src="$1"
@@ -41,7 +40,7 @@ parse_flags() {
 
 usage() {
   cat <<EOF >&2
-Usage: $name [OPTION]... SRC
+Usage: ${0##*/} [OPTION]... SRC
 Execute processing program quickly.
 
 Options:
@@ -55,7 +54,7 @@ version() {
 }
 
 execute_processing() {
-  workdir="$(mktemp -d "/tmp/${name}.tmp.XXXXXX")"
+  workdir="$(mktemp -d "/tmp/${0##*/}.tmp.XXXXXX")"
   atexit() {
     rm -f -- "$workdir"
   }
