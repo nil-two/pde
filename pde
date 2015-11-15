@@ -22,6 +22,10 @@ parse_flags() {
         echo "${0##*/}: unrecognized option '$1'" >&2
         exit 2
         ;;
+      --)
+        shift
+        break
+        ;;
       *)
         break
         ;;
