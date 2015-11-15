@@ -3,14 +3,14 @@ set -eu
 readonly version='0.1.0'
 
 usage() {
-  cat <<EOF >&2
+  cat <<__USAGE__ >&2
 Usage: ${0##*/} [OPTION]... SRC
 Execute processing program quickly.
 
 Options:
   -h, --help      display this help text and exit
   -v, --version   display version information and exit
-EOF
+__USAGE__
 }
 
 version() {
