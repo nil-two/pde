@@ -1,7 +1,7 @@
 #! /bin/sh
 set -eu
-readonly NAME="${0##*/}"
-readonly VERSION='0.1.0'
+readonly name="${0##*/}"
+readonly version='0.1.0'
 
 main() {
   parse_flags "$@"
@@ -20,7 +20,7 @@ parse_flags() {
         exit 0
         ;;
       -*)
-        echo "$NAME: unrecognized option '$opt'" >&2
+        echo "$name: unrecognized option '$opt'" >&2
         exit 2
         ;;
       *)
@@ -29,19 +29,19 @@ parse_flags() {
     esac
   done
   if [ "$#" -lt 1 ]; then
-    echo "$NAME: no input files" >&2
+    echo "$name: no input files" >&2
     exit 2
   fi
   if [ ! -f "$1" ]; then
-    echo "$NAME: $1: No such file" >&2
+    echo "$name: $1: No such file" >&2
     exit 2
   fi
-  SRC="$1"
+  src="$1"
 }
 
 usage() {
   cat <<EOF >&2
-Usage: $NAME [OPTION]... SRC
+Usage: $name [OPTION]... SRC
 Execute processing program quickly.
 
 Options:
@@ -51,23 +51,23 @@ EOF
 }
 
 version() {
-  echo "$VERSION" >&2
+  echo "$version" >&2
 }
 
 execute_processing() {
-  WORKDIR="$(mktemp -d "/tmp/${NAME}.tmp.XXXXXX")"
+  workdir="$(mktemp -d "/tmp/${name}.tmp.XXXXXX")"
   atexit() {
-    rm -f -- "$WORKDIR"
+    rm -f -- "$workdir"
   }
   trap 'atexit' EXIT
   trap 'trap - EXIT; atexit; exit -1' INT PIPE TERM
 
-  mkdir "$WORKDIR/sketch"
-  mkdir "$WORKDIR/output"
-  cp "$SRC" "$WORKDIR/sketch/sketch.pde"
+  mkdir "$workdir/sketch"
+  mkdir "$workdir/output"
+  cp "$src" "$workdir/sketch/sketch.pde"
   processing-java \
-    --sketch="$WORKDIR/sketch" \
-    --output="$WORKDIR/output" \
+    --sketch="$workdir/sketch" \
+    --output="$workdir/output" \
     --force \
     --run
 }
