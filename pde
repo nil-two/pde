@@ -55,8 +55,12 @@ version() {
 }
 
 execute_processing() {
-  WORKDIR=$(mktemp -d "/tmp/${NAME}.tmp.XXXXXX")
-  trap 'rm -rf '$WORKDIR EXIT
+  WORKDIR="$(mktemp -d "/tmp/${NAME}.tmp.XXXXXX")"
+  atexit() {
+    rm -f -- "$WORKDIR"
+  }
+  trap 'atexit' EXIT
+  trap 'trap - EXIT; atexit; exit -1' INT PIPE TERM
 
   mkdir "$WORKDIR/sketch"
   mkdir "$WORKDIR/output"
