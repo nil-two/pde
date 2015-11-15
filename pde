@@ -66,9 +66,9 @@ execute_processing() {
   trap 'atexit' EXIT
   trap 'trap - EXIT; atexit; exit -1' INT PIPE TERM
 
-  mkdir "$workdir/sketch"
-  mkdir "$workdir/output"
-  cp "$src" "$workdir/sketch/sketch.pde"
+  mkdir -- "$workdir/sketch"
+  mkdir -- "$workdir/output"
+  cp -- "$src" "$workdir/sketch/sketch.pde"
   processing-java \
     --sketch="$workdir/sketch" \
     --output="$workdir/output" \
