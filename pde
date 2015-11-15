@@ -8,8 +8,8 @@ main() {
 }
 
 parse_flags() {
-  for opt in "$@"; do
-    case "$opt" in
+  while [ "$#" -gt 1 ]; do
+    case "$1" in
       -h|--help)
         usage
         exit 0
@@ -19,13 +19,14 @@ parse_flags() {
         exit 0
         ;;
       -*)
-        echo "${0##*/}: unrecognized option '$opt'" >&2
+        echo "${0##*/}: unrecognized option '$1'" >&2
         exit 2
         ;;
       *)
         break
         ;;
     esac
+    shift
   done
   if [ "$#" -lt 1 ]; then
     echo "${0##*/}: no input files" >&2
