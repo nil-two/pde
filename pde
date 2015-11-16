@@ -27,13 +27,13 @@ while [ "$#" -gt 1 ]; do
       version
       exit 0
       ;;
-    -*)
-      echo "${0##*/}: unrecognized option '$1'" >&2
-      exit 2
-      ;;
     --)
       shift
       break
+      ;;
+    -*)
+      echo "${0##*/}: unrecognized option '$1'" >&2
+      exit 2
       ;;
     *)
       break
