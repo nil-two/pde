@@ -9,7 +9,7 @@ Execute processing program quickly.
 
 Options:
   -h, --help      display this help text and exit
-  -v, --version   display version information and exit
+  -v, --version   output version information and exit
 __USAGE__
 }
 
@@ -42,11 +42,11 @@ while [ "$#" -gt 1 ]; do
   shift
 done
 if [ "$#" -lt 1 ]; then
-  echo "${0##*/}: no input files" >&2
+  echo "${0##*/}: no input file" >&2
   exit 2
 fi
 if [ ! -f "$1" ]; then
-  echo "${0##*/}: $1: No such file" >&2
+  echo "${0##*/}: $1: no such file" >&2
   exit 2
 fi
 
