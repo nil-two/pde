@@ -53,7 +53,7 @@ fi
 src="$1"
 workdir="$(mktemp -d "/tmp/${0##*/}.tmp.XXXXXX")"
 atexit() {
-  rm -f -- "$workdir"
+  rm -rf -- "$workdir"
 }
 trap 'atexit' EXIT
 trap 'trap - EXIT; atexit; exit -1' INT PIPE TERM
