@@ -17,7 +17,7 @@ version() {
   echo "$version" >&2
 }
 
-while [ "$#" -gt 1 ]; do
+while [ "$#" -gt 0 ]; do
   case "$1" in
     -h|--help)
       usage
