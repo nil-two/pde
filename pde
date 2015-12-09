@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 set -eu
 readonly version='0.1.1'
 
