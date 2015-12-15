@@ -3,7 +3,7 @@ set -eu
 readonly version='0.1.1'
 
 usage() {
-  cat <<__USAGE__ >&2
+  cat <<__USAGE__
 Usage: ${0##*/} [OPTION]... SRC
 Execute processing program quickly.
 
@@ -14,17 +14,17 @@ __USAGE__
 }
 
 version() {
-  echo "$version" >&2
+  echo "$version"
 }
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
     -h|--help)
-      usage
+      usage >&2
       exit 0
       ;;
     -v|--version)
-      version
+      version >&2
       exit 0
       ;;
     --)
