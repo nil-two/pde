@@ -17,6 +17,10 @@ version() {
   echo "$version"
 }
 
+warn() {
+  echo "${0##*/}: $*"
+}
+
 while [ "$#" -gt 0 ]; do
   case "$1" in
     -h|--help)
@@ -32,7 +36,7 @@ while [ "$#" -gt 0 ]; do
       break
       ;;
     -*)
-      echo "${0##*/}: unrecognized option '$1'" >&2
+      warn "unrecognized option '$1'" >&2
       exit 2
       ;;
     *)
@@ -42,11 +46,11 @@ while [ "$#" -gt 0 ]; do
   shift
 done
 if [ "$#" -lt 1 ]; then
-  echo "${0##*/}: no input file" >&2
+  warn "no input file" >&2
   exit 2
 fi
 if [ ! -f "$1" ]; then
-  echo "${0##*/}: $1: no such file" >&2
+  warn "$1: no such file" >&2
   exit 2
 fi
 
