@@ -3,7 +3,7 @@ set -eu
 readonly version='0.1.1'
 
 usage() {
-  cat <<__USAGE__
+  cat <<__USAGE__ >&2
 Usage: ${0##*/} [OPTION]... SRC
 Execute processing program quickly.
 
@@ -14,21 +14,21 @@ __USAGE__
 }
 
 version() {
-  echo "$version"
+  echo "$version" >&2
 }
 
 warn() {
-  echo "${0##*/}: $*"
+  echo "${0##*/}: $*" >&2
 }
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
     -h|--help)
-      usage >&2
+      usage
       exit 0
       ;;
     -v|--version)
-      version >&2
+      version
       exit 0
       ;;
     --)
@@ -36,7 +36,7 @@ while [ "$#" -gt 0 ]; do
       break
       ;;
     -*)
-      warn "unrecognized option '$1'" >&2
+      warn "unrecognized option '$1'"
       exit 2
       ;;
     *)
@@ -46,11 +46,11 @@ while [ "$#" -gt 0 ]; do
   shift
 done
 if [ "$#" -lt 1 ]; then
-  warn "no input file" >&2
+  warn "no input file"
   exit 2
 fi
 if [ ! -f "$1" ]; then
-  warn "$1: no such file" >&2
+  warn "$1: no such file"
   exit 2
 fi
 
