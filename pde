@@ -21,7 +21,7 @@ warn() {
   echo "${0##*/}: $*" >&2
 }
 
-while [ "$#" -gt 0 ]; do
+while [ $# -gt 0 ]; do
   case "$1" in
     -h|--help)
       usage
@@ -45,7 +45,7 @@ while [ "$#" -gt 0 ]; do
   esac
   shift
 done
-if [ "$#" -lt 1 ]; then
+if [ $# -lt 1 ]; then
   warn "no input file"
   exit 2
 fi
