@@ -22,7 +22,7 @@ warn() {
 }
 
 while [ $# -gt 0 ]; do
-  case "$1" in
+  case $1 in
     -h|--help)
       usage
       exit 0
@@ -54,8 +54,8 @@ if [ ! -f "$1" ]; then
   exit 2
 fi
 
-src="$1"
-workdir="$(mktemp -d "/tmp/${0##*/}.tmp.XXXXXX")"
+src=$1
+workdir=$(mktemp -d "/tmp/${0##*/}.tmp.XXXXXX")
 atexit() {
   rm -rf -- "$workdir"
 }
