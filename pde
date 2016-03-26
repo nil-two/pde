@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
-readonly version='0.1.1'
+readonly version="0.1.1"
 
 usage() {
   cat <<__USAGE__ >&2
@@ -59,8 +59,8 @@ workdir=$(mktemp -d "/tmp/${0##*/}.tmp.XXXXXX")
 atexit() {
   rm -rf -- "$workdir"
 }
-trap 'atexit' EXIT
-trap 'trap - EXIT; atexit; exit -1' INT PIPE TERM
+trap "atexit" EXIT
+trap "trap - EXIT; atexit; exit -1" INT PIPE TERM
 
 mkdir -- "$workdir/sketch"
 mkdir -- "$workdir/output"
