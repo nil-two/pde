@@ -14,11 +14,11 @@ __USAGE__
 }
 
 version() {
-  echo "$version" >&2
+  printf "%s\n" "$version" >&2
 }
 
 warn() {
-  echo "${0##*/}: $*" >&2
+  printf "%s: %s\n" "${0##*/}" "$*" >&2
 }
 
 while [ $# -gt 0 ]; do
