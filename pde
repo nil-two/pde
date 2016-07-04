@@ -1,6 +1,6 @@
 #!/bin/sh
 set -eu
-readonly version="0.1.1"
+version="0.1.1"
 
 usage() {
   cat <<__USAGE__ >&2
