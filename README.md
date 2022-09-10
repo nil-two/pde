@@ -17,7 +17,7 @@ The following instructions assume that `~/bin` is on your `$PATH`.
 If that is not the case, you can substitute your favorite location.
 
 ```sh
-curl -L https://raw.githubusercontent.com/nil2nekoni2/pde/master/pde > ~/bin/pde
+curl -L https://raw.githubusercontent.com/nil-two/pde/master/pde > ~/bin/pde
 chmod 755 ~/bin/pde
 ```
 
